@@ -2,7 +2,7 @@
 urlinput_start = input('Please enter target URL: ')
 #urlinput_start = "https://www.smbc.co.jp/"
 
-@@@@@@@@@@@@
+############
 #-解析除隊したいURLキーワード------------
 urlinput_del = "facebook\.com|yahoo\.com|youtube\.com|twitter\.com|yahoo\.co\.jp|line\.me"
 #-調査階層数------------
@@ -17,7 +17,7 @@ hdr = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.
        'Accept-Encoding': 'none',
        'Accept-Language': 'en-US,en;q=0.8',
        'Connection': 'keep-alive'}
-@@@@@@@@@@@
+############
 
 
 #Get time stamp for title
@@ -69,7 +69,7 @@ import time
 
 
 
-@@@@@@@@@@
+##############
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 
