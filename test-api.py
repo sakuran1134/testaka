@@ -10,4 +10,4 @@ access_token='akab-2twz2lzoddpyzv3x-mp5piuk5y6ww3rtx'
 )
 
 result = s.get(urljoin(baseurl, '/network-list/v2/network-lists?includeElements=true'))
-print result.status_code
+print(result.status_code)
