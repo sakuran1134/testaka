@@ -1,6 +1,9 @@
 name: Akamai API for GitHub Actions
 
-on: [push]
+on:
+  push:
+    paths:
+    - '**.py'
 
 env:
     # リクエストのターゲットブランチ
@@ -31,7 +34,7 @@ jobs:
     - name: 'python run'
       run: |
         # ターゲットブランチとHEAD間で、追加,変更されたpythonファイルのパスを取得してループ処理
-        for file in $(git diff HEAD^ --name-only -- "*.py") ; do
+        for file in $(git diff origin/${TARGET_BRANCH} HEAD --diff-filter=AM --name-only -- "*.py") ; do
           # ここで任意の処理
           python ${file}
         done
