@@ -1,6 +1,6 @@
 import requests
 from akamai.edgegrid import EdgeGridAuth
-from urlparse import urljoin
+from urllib.parse import urljoin
 baseurl = 'https://akab-swugbedetsfo5xvq-wbetycrivce5gswx.luna.akamaiapis.net/'
 s = requests.Session()
 s.auth = EdgeGridAuth(
