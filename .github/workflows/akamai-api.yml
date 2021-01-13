@@ -28,9 +28,15 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     # git diffをするためにターゲットブランチをフェッチする
+    - name: 'Edit ENV'
+      run: |
+        echo 'TARGET_BRANCH<<EOL' >> $GITHUB_ENV
+        echo ${GET_REF} | awk -F / 'END{print $NF}' >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
+        
+    # git diffをするためにターゲットブランチをフェッチする
     - name: 'Fetch'
       run: |
-        echo "TARGET_BRANCH=`echo ${GET_REF} | awk -F / 'END{print $NF}'`" >> $GITHUB_ENV
         git fetch --depth 1 origin ${TARGET_BRANCH}
 
     - name: 'python run'
