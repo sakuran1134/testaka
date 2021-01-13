@@ -2,6 +2,10 @@ name: Akamai API for GitHub Actions
 
 on: [push]
 
+env:
+    # リクエストのターゲットブランチ
+    TARGET_BRANCH: ${{ github.ref }}
+
 jobs:
   build:
 
@@ -13,11 +17,21 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install edgegrid-python
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: 
+
+    # git diffをするためにターゲットブランチをフェッチする
+    - name: 'Fetch'
+    	run: git fetch --depth 1 origin ${TARGET_BRANCH}
+
+    - name: 'python run'
       run: |
-        python test-api.py
+        # ターゲットブランチとHEAD間で、追加,変更されたpythonファイルのパスを取得してループ処理
+        for file in $(git diff HEAD^ --name-only -- "*.py") ; do
+          # ここで任意の処理
+          python ${file}
+        done
