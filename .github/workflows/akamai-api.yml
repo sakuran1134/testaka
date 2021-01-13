@@ -39,6 +39,12 @@ jobs:
       run: |
         git fetch --depth 1 origin ${TARGET_BRANCH}
 
+    - name: 'git diff'
+      run: |
+        echo 'TARGET_FILE<<EOF' >> $GITHUB_ENV
+        git diff origin/${TARGET_BRANCH} HEAD --diff-filter=AM --name-only -- "*.py" >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
+
     - name: 'python run'
       run: |
         # ターゲットブランチとHEAD間で、追加,変更されたpythonファイルのパスを取得してループ処理
@@ -46,3 +52,4 @@ jobs:
           # ここで任意の処理
           python ${file}
         done
+        python ${TARGET_FILE}
