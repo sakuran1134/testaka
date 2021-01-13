@@ -7,8 +7,7 @@ on:
 
 env:
     # リクエストのターゲットブランチ
-    ref: ${{ github.ref }}
-    TARGET_BRANCH: ''
+    GET_REF: ${{ github.ref }}
 
 jobs:
   build:
@@ -31,7 +30,7 @@ jobs:
     # git diffをするためにターゲットブランチをフェッチする
     - name: 'Fetch'
       run: |
-        TARGET_BRANCH=`echo ${ref} | awk -F "/" 'END{print $NF}'`
+        echo "TARGET_BRANCH=`echo ${GET_REF} | awk -F / 'END{print $NF}'`" >> $GITHUB_ENV
         git fetch --depth 1 origin ${TARGET_BRANCH}
 
     - name: 'python run'
