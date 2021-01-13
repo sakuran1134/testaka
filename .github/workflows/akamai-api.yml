@@ -31,7 +31,7 @@ jobs:
     # git diffをするためにターゲットブランチをフェッチする
     - name: 'Fetch'
       run: |
-        TARGET_BRANCH=`echo ${ref} | awk -F "/" 'END{print ${NF}}'`
+        TARGET_BRANCH=`echo ${ref} | awk -F "/" 'END{print $NF}'`
         git fetch --depth 1 origin ${TARGET_BRANCH}
 
     - name: 'python run'
