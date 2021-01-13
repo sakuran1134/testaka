@@ -30,7 +30,7 @@ jobs:
     # git diffをするためにターゲットブランチをフェッチする
     - name: 'Edit ENV'
       run: |
-        echo 'TARGET_BRANCH<<EOL' >> $GITHUB_ENV
+        echo 'TARGET_BRANCH<<EOF' >> $GITHUB_ENV
         echo ${GET_REF} | awk -F / 'END{print $NF}' >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
         
