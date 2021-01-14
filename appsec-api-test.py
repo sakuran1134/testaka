@@ -9,6 +9,5 @@ client_secret='qxKRTj0nGP2VEU6rfnx5uwXE4r755Kp4rU9XurmOGYQ=',
 access_token='akab-2twz2lzoddpyzv3x-mp5piuk5y6ww3rtx'
 )
 
-result = s.get(urljoin(baseurl, '/network-list/v2/network-lists?includeElements=true'))
+result = s.get(urljoin(baseurl, '/network-list/v2/network-lists?includeElements=truei&extended=true&listType=IP'))
 print(result.status_code)
-print(result)
